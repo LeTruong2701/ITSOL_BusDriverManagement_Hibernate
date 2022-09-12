@@ -6,6 +6,7 @@ import entity.BusLine;
 import entity.BusRouteManager;
 import entity.Driver;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 import java.util.*;
@@ -78,11 +79,18 @@ public class BusRouteManagerService {
     }
 
 
+    public void showBusRouteManager(){
+        Session session= HibernateUtil.getSessionFactory().openSession();
+        Query<BusRouteManager> query=session.createQuery("FROM BusRouteManager ");
+        List<BusRouteManager> dri=query.list();
+        dri.forEach(d-> System.out.println("Driver Id: "+d.getDriverId()+"\t BusLine Id: "+d.getBusLineId()+"\t Số tuyến chạy:"+d.getRoundNumber()));
+        session.close();
+    }
     public void createNew(){
-        if(driverService.getDriver().isEmpty()){
-            System.out.println("Chưa có thông tin tài xế hoặc tuyến xe, vui lòng nhập tài xế hoặc tuyến xe trước.");
-            return;
-        }
+//        if(driverService.getDriver().isEmpty()){
+//            System.out.println("Chưa có thông tin tài xế hoặc tuyến xe, vui lòng nhập tài xế hoặc tuyến xe trước.");
+//            return;
+//        }
         System.out.print("Mời nhập số tài xế muốn phân công lái xe: ");
         int driverNumber =-1;
         do {
@@ -241,12 +249,12 @@ public class BusRouteManagerService {
 
     private void sortByBusLineNumber() {
         this.driverBusManagementDtos.sort(Comparator.comparing(DriverBusManagementDto::getTotalDistance).reversed());
-        this.showAll();
+        this.showBusRouteManager();
     }
 
     private void sortByDriverName() {
         this.driverBusManagementDtos.sort(Comparator.comparing(o -> o.getDriver().getName()));
-        this.showAll();
+        this.showBusRouteManager();
     }
 
 

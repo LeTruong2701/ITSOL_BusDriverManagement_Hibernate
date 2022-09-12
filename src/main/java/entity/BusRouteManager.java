@@ -5,10 +5,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "DRIVER_BUS_MANAGEMENT")
-public class BusRouteManager {
+public class BusRouteManager implements Serializable {
     @Id
     @Column(name = "driver_id")
     private double driverId;

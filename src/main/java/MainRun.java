@@ -13,6 +13,7 @@ public class MainRun {
     public static final DriverService driverService=new DriverService();
     public static final BusLineService busLineService=new BusLineService();
     public static final BusRouteManagerService busRouteManagerService= new BusRouteManagerService();
+
     public static void main(String[] args) {
 
 
@@ -32,19 +33,19 @@ public class MainRun {
             int funcChoice=funcChoice();
             switch (funcChoice){
                 case 1:
-                    driverService.createNew();
+                    driverService.createNew();break;
                 case 2:
-                    driverService.showDrivers();
+                    driverService.showDrivers();break;
                 case 3:
-                    busLineService.createBusLineNew();
+                    busLineService.createBusLineNew();break;
                 case 4:
-                    busLineService.showBusLines();
+                    busLineService.showBusLines();break;
                 case 5:
-                    busRouteManagerService.createNew();
+                    busRouteManagerService.createNew();break;
                 case 6:
-                    busRouteManagerService.showAll();
+                    busRouteManagerService.showBusRouteManager();break;
                 case 7:
-                    busRouteManagerService.sort();
+                    busRouteManagerService.sort();break;
 
             }
 
@@ -59,10 +60,10 @@ public class MainRun {
                 choice=new Scanner(System.in).nextInt();
 
             }catch (InputMismatchException ip){
-                System.out.println("Gía trị nhập phải là số nguyên");
+                System.out.println("Giá trị nhập phải là số nguyên");
                 continue;
             }
-            if (choice>=1&&choice<=6){
+            if (choice>=1&&choice<=7){
                 return choice;
             }
             System.out.println("Gía trị vừa nhập không hợp lệ, vui lòng nhập lại");
@@ -80,6 +81,5 @@ public class MainRun {
         System.out.println("7. Sắp xếp danh sách phân công");
         System.out.println("8. Lập bảng thống kê khoảng cách chạy xe trong ngày");
         System.out.println("9. Kết thúc chương trình");
-
     }
 }

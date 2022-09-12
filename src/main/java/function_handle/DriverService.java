@@ -136,7 +136,7 @@ public class DriverService {
     public Driver findById(int driverId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         return (Driver) session.createQuery("From Driver where id = :p_id")
-                .setParameter("p_id", (double) driverId)
+                .setParameter("p_id", driverId)
                 .getSingleResult();
     }
 

@@ -108,7 +108,7 @@ public class BusLineService {
     public BusLine findById(int busLineId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         return (BusLine) session.createQuery("FROM BusLine where id = :p_id")
-                .setParameter("p_id", (long) busLineId)
+                .setParameter("p_id", busLineId)
                 .getSingleResult();
 
     }
